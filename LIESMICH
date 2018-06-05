@@ -1,0 +1,35 @@
+Starten als Webanwendung:
+
+1. Linux-Konsole öffnen
+2. In das Projektverzeichnis wechseln (z.B. cd worksapce/projektname)
+2. mvn clean jetty:run in der Konsole ausführen
+
+
+web.xml und Templates -> src/main/webapp/WEB-INF
+
+
+Freemarker Template Engine:
+http://freemarker.sourceforge.net/
+
+
+Weitere Infos zum "Store"-Konzept (wird dort Repository genannt):
+
+http://martinfowler.com/eaaCatalog/repository.html
+http://msdn.microsoft.com/en-us/library/ff649690.aspx
+http://devtyr.norberteder.com/post/Das-Repository-Pattern-anhand-eines-Beispiels-inkl-Tests.aspx
+
+
+Um sich von außerhalb der Uni mit der DB zu verbinden:
+
+public static Connection createConnection() throws ClassNotFoundException, SQLException {
+	Class.forName("com.ibm.db2.jcc.DB2Driver");			
+
+	Properties properties = new Properties();
+	properties.setProperty("securityMechanism", Integer.toString(com.ibm.db2.jcc.DB2BaseDataSource.USER_ONLY_SECURITY));
+	properties.setProperty("user","dblabXX");
+	properties.setProperty("password","password");
+
+	Connection connection = DriverManager.getConnection("jdbc:db2://<rechnername>.is.inf.uni-due.de:50005/DBNAME:currentSchema=DBLABXX;", properties);
+		
+	return connection;
+}
